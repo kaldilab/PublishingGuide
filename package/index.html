@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>index</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+		rel="stylesheet">
+	<script type="text/javascript" src="./resources/js/jquery-3.6.3.min.js"></script>
+	<style type="text/css">
+		* { margin: 0; padding: 0; font-family: 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕', Apple Gothic; font-weight: 400; word-break: keep-all; box-sizing: border-box; } 
+    html { font-size: 10px; } 
+    body { font-size: 1.6rem; } 
+    li { list-style: none; } 
+    a { color: #444; text-decoration: none; } 
+    a:hover { color: #444; } 
+    a:visited, a:focus, a:active { color: #444; } 
+    /* 부트스트랩 초기화 */
+    ol, ul { padding-left: 0; } 
+    .h1, .h2,.h3,.h4,.h5,.h6,h1,h2,h3,h4,h5,h6 { margin-bottom: 0; } 
+    .table>tbody { vertical-align: middle; } 
+    p { margin-bottom: 0; } 
+    /* 상태 색상 */
+    .mod { background-color: #Ffc; } 
+    .add { background-color: #bde0fe; } 
+    .end { background-color: #ffffff; } 
+    .red { color: #e80000 !important; } 
+    /* 공통 */
+    h1 { margin-bottom: 4rem; font-size: 3rem; font-weight: 700; } 
+    #wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding :2rem 5rem; } 
+    /* 헤더 */
+    .header__info { display: flex; justify-content: space-between; flex-wrap: nowrap; font-size: 1.4rem; } 
+    .header__list { display: flex; margin-left: 2rem; color: #676767; } 
+    .header__list li { display: flex; align-items: center; margin-left: 2rem; } 
+    .header__list li:first-child { margin-left: 0; } 
+    .header__list li:last-child { margin-left: 4rem; } 
+    .header__list li span { width: 1.2rem; height: 1.2rem; margin-right: 0.5rem; border-radius: 100%; border: 0.1rem solid #ccc; vertical-align: -0.1rem}
+    .header__list li p { color: #000; } 
+    .header__tabnav { display: flex; } 
+    .header__tabnav li { margin-right: 1rem; padding: 0.5rem 2rem; border-radius: 0.5rem; background-color: #444; transition: all 0.4s; cursor: pointer; } 
+    .header__tabnav li:hover { background-color: #000; } 
+    .header__tabnav li:hover a { color: #ffff; } 
+    .header__tabnav li a { display: block; color: #ffff; } 
+    .title { padding: 1rem 2rem; font-size: 1.4rem; background-color: #444; color: #ffff; } 
+    .title strong { padding: 1rem 0; width: calc(100% + 4rem); margin: 1rem 0 -1rem -2rem; display: block; background-color: #ffff; color: #ef233c; font-weight: 400; } 
+    .title strong i { margin-right: 0.5rem; padding: 0.3rem 1rem; color: #ffff; font-style: normal; font-weight: 700; background-color: #ef233c; } 
+    /* 테이블 */
+    .table__section { margin-bottom: 4rem; } 
+    table { font-size: 1.2rem; text-align: center; } 
+    thead { background-color: #ebebeb; } 
+    thead th { border-right: 1px solid #E5E5E5; border-top: 1px solid #E5E5E5; } 
+    tbody td { height: 3rem; border-right: 1px solid #E5E5E5; border-left: 1px solid #E5E5E5; } 
+    tbody td.url { text-align: left; } 
+    @media screen and (max-width: 780px){
+			#wrap { padding: 5rem 2rem }
+			h1 { margin-bottom: 2rem; font-size: 2.4rem; }
+			/* 헤더 */
+			.header__info { flex-direction: column; }
+			.header__list { position: relative; margin-left: 0; flex-wrap: wrap;}
+			.header__list li:last-child { position: absolute; right: 0; }		
+			.header__tabnav li {padding:  0.5rem 1rem; font-size: 1.2rem; }
+    	.title { margin-bottom: -1rem; } 
+			.title strong { line-height: 2.4rem; }
+    	/* 테이블 */
+			.table__section { margin-bottom: 2rem; }
+    	.table>:not(caption)>*>* { padding: 0.5rem 1.5rem; } 
+    	table, tbody, td, tr { display: block; } 
+    	table { text-align: left; } 
+    	thead { display: none; } 
+    	tbody { width: 100%; } 
+    	tr { margin-bottom: 1rem; border-top: 1px solid #E5E5E5; } 
+    	td { display: none; } 
+    	td.sub_title, td.sub_depth, td.url, td.note { display: block; } 
+    	td.sub_title { background-color: #ebebeb; font-weight: 600; } 
+    }
+    @media screen and (max-width: 380px){
+			h1 {font-size: 2rem;}
+			.header__list li:last-child { position: relative; width: 100%; margin-left: 0; }
+    }
+	</style>
+</head>
+<!-- 진행중 : mod  | 완료  : add  | 종료 : end  -->
+<body>
+	<!-- wrap -->
+	<div id="wrap">
+		<!-- header -->
+		<header class="header">
+			<div class="header__area">
+				<h1>index Publishing List</h1>
+				<div class="header__info">
+					<ul class="header__tabnav">
+						<li><a href="#c1">레이아웃</a></li>
+						<li><a href="#c2">메인</a></li>
+						<li><a href="#c3">서브</a></li>
+					</ul>
+					<ul class="header__list">
+						<li><span class="mod"></span>진행중</li>
+						<li><span class="add"></span>완료</li>
+						<li><span class="end"></span>종료</li>
+						<li>
+							<p><strong>23.01.17</strong> Last updata</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<!-- //header -->
+		<!-- main -->
+		<main role="main" class="main">
+			<!-- 레이아웃 -->
+			<h2 id="c1" class="title">레이아웃
+				<!-- <strong> <i>필독</i> 01.26 고객층으로 전하고싶은 내용 작성 없으면 strong태그 주석처리, [ 컨트롤 + / ], [ 컨트롤 + / ] </strong> -->
+			</h2>
+			<div class="table__section">
+				<table class="table table-hover">
+					<caption></caption>
+					<colgroup>
+						<col span="1" style="width:10%;">
+						<col span="1" style="width:10%;">
+						<col span="1" style="width:10%;">
+						<col span="1" style="width:10%;">
+						<col span="1" style="width:30%;">
+						<col span="1" style="width:10%;">
+						<col span="1" style="width:20%;">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">1 Depth</th>
+							<th scope="col">2 Depth</th>
+							<th scope="col">3 Depth</th>
+							<th scope="col">Etc.</th>
+							<th scope="col">URL</th>
+							<th scope="col">Date</th>
+							<th scope="col">비고</th>
+						</tr>
+					</thead>
+					<!-- 1. tbody로 1Depth 구분
+							 2. sub_title : 1뎁스
+							 3. sub_depth : 2뎁스
+							 4. url : html 문서 위치
+							 5. note: 비고  -->
+					<tbody>
+						<tr class="end">
+							<td class="sub_title">레이아웃</td>
+							<td class="sub_depth"></td>
+							<td></td>
+							<td></td>
+							<td class="url"><a href="./html/" target="_blank"></a></td>
+							<td>23.01.08</td>
+							<td class="note"><span class="red"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- //레이아웃 -->
+			<!-- 메인 -->
+			<h2 id="c2" class="title">메인
+				<!-- <strong> <i>필독</i> 01.26 고객층으로 전하고싶은 내용 작성 없으면 strong태그 주석처리, [ 컨트롤 + / ] </strong> -->
+			</h2>
+			<div class="table__section">
+				<table class="table table-hover">
+					<caption></caption>
+					<colgroup>
+						<col span="1" style="width:10%;">
+						<col span="1" style="width:10%;">
+						<col span="1" style="width:10%;">
+						<col span="1" style="width:10%;">
+						<col span="1" style="width:30%;">
+						<col span="1" style="width:10%;">
+						<col span="1" style="width:20%;">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">1 Depth</th>
+							<th scope="col">2 Depth</th>
+							<th scope="col">3 Depth</th>
+							<th scope="col">Etc.</th>
+							<th scope="col">URL</th>
+							<th scope="col">Date</th>
+							<th scope="col">비고</th>
+						</tr>
+					</thead>
+					<!-- 1. tbody로 1Depth 구
+								 2. sub_title : 1뎁스
+								 3. sub_depth : 2뎁스
+								 4. url : html 문서 위치
+								 5. note: 비고분  -->
+					<tbody>
+						<tr class="end">
+							<td class="sub_title">메인</td>
+							<td class="sub_depth"></td>
+							<td></td>
+							<td></td>
+							<td class="url"><a href="./html/" target="_blank"></a></td>
+							<td>23.01.08</td>
+							<td class="note"><span class="red"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- //메인 -->
+			<!-- 서브 -->
+			<h2 id="c3" class="title">서브
+				<strong> <i>필독</i> 01.26 고객층으로 전하고싶은 내용 작성 없으면 strong태그 주석처리, [ 컨트롤 + / ] </strong>
+			</h2>
+			<div class="table__section">
+				<table class="table table-hover">
+					<caption></caption>
+					<colgroup>
+						<col span="1" style="width:10%;">
+						<col span="1" style="width:10%;">
+						<col span="1" style="width:10%;">
+						<col span="1" style="width:10%;">
+						<col span="1" style="width:30%;">
+						<col span="1" style="width:10%;">
+						<col span="1" style="width:20%;">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">1 Depth</th>
+							<th scope="col">2 Depth</th>
+							<th scope="col">3 Depth</th>
+							<th scope="col">Etc.</th>
+							<th scope="col">URL</th>
+							<th scope="col">Date</th>
+							<th scope="col">비고</th>
+						</tr>
+					</thead>
+					<!-- 1. tbody로 1Depth 구분
+							 2. sub_title : 1뎁스
+							 3. sub_depth : 2뎁스
+							 4. url : html 문서 위치
+							 5. note: 비고  -->
+					<tbody>
+						<tr class="end">
+							<td class="sub_title" rowspan="2">서브</td>
+							<td class="sub_depth">서브1</td>
+							<td></td>
+							<td></td>
+							<td class="url"><a href="./html/" target="_blank"></a></td>
+							<td>23.01.08</td>
+							<td class="note"><span class="red"></span></td>
+						</tr>
+						<tr class="end">
+							<td class="sub_depth">서브2</td>
+							<td></td>
+							<td></td>
+							<td class="url"><a href="./html/" target="_blank"></a></td>
+							<td>23.01.09</td>
+							<td class="note"><span class="red"></span></td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr class="end">
+							<td class="sub_title">서브2</td>
+							<td class="sub_depth">서브1</td>
+							<td></td>
+							<td></td>
+							<td class="url"><a href="./html/" target="_blank"></a></td>
+							<td>23.01.08</td>
+							<td class="note"><span class="red"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- //서브 -->
+		</main>
+		<!-- //main -->
+	</div>
+	<!-- //wrap -->
+	<script type="text/javascript">
+		$(function () {
+			$.each($("td.url > a"), function (i, v) {
+				$(v).text($(v).attr("href"));
+			});
+			$('.tab_nav a').click(function () {
+				var activeTab = $(this).attr("href");
+				$('html, body').stop().animate({ scrollTop: $(activeTab).offset().top - 0 }, 800);
+				return false;
+			});
+		});
+	</script>
+</body>
+
+</html>

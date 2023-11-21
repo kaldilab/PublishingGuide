@@ -1,0 +1,10 @@
+{
+  "window.zoomLevel": 0,
+  "editor.fontSize": 12,
+  "editor.tabSize": 2,
+  "editor.lineHeight": 15,
+  "editor.scrollBeyondLastLine": true,
+  "eslint.autoFixOnSave": true,
+  "editor.wordWrap": "on",
+  "editor.bracketPairColorization.enabled": true
+}
